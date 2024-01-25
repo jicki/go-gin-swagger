@@ -1,29 +1,30 @@
 package v1
 
 import (
-	"gin-swagger-demo/models"
-	"gin-swagger-demo/pkg/logging"
 	"github.com/astaxie/beego/validation"
+	"go-gin-swagger/models"
+	"go-gin-swagger/pkg/logging"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
-	"gin-swagger-demo/pkg/app"
-	"gin-swagger-demo/pkg/e"
-	"gin-swagger-demo/pkg/util"
+	"go-gin-swagger/pkg/app"
+	"go-gin-swagger/pkg/e"
+	"go-gin-swagger/pkg/util"
 )
 
 type LoginParams struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
+
 // @Summary 登录
 // @Description 管理员登录
 // @Tags 管理员
 // @Security Bearer
 // @Produce  json
 // @Param admin body LoginParams true "Username:用户名,Password:密码"
-// @Success 200 {object} app.Response {"code":200,"data":null,"msg":""}
+// @Success 200 {object} app.Response{code=int} "desc"
 // @Router /admin/v1/auth/login [post]
 func Login(c *gin.Context) {
 	appG := app.Gin{C: c}
@@ -112,7 +113,7 @@ type ChangePasswordParams struct {
 // @Security Bearer
 // @Produce  json
 // @Param admin body ChangePasswordParams true "Password 密码 RePassword 再次输入密码"
-// @Success 200 {object} app.Response {"code":200,"data":null,"msg":""}
+// @Success 200 {object} app.Response{code=int} "desc"
 // @Router /admin/v1/auth/changePassword [post]
 func ChangePassword(c *gin.Context) {
 	appG := app.Gin{C: c}

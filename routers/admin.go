@@ -1,11 +1,12 @@
 package routers
 
 import (
-	v1 "gin-swagger-demo/admin/v1"
-	"gin-swagger-demo/middleware/jwt"
+	v1 "go-gin-swagger/admin/v1"
+	"go-gin-swagger/middleware/jwt"
 )
 
-/*InitAdminRouter
+/*
+InitAdminRouter
 初始化 admin 接口路由
 */
 func InitAdminRouter() {

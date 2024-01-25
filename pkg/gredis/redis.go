@@ -6,8 +6,8 @@ import (
 
 	"github.com/gomodule/redigo/redis"
 
-	"gin-swagger-demo/pkg/logging"
-	"gin-swagger-demo/pkg/setting"
+	"go-gin-swagger/pkg/logging"
+	"go-gin-swagger/pkg/setting"
 )
 
 var RedisConn *redis.Pool
@@ -27,7 +27,7 @@ func Setup() error {
 			if setting.RedisSetting.Password != "" {
 				if _, err := c.Do("AUTH", setting.RedisSetting.Password); err != nil {
 					c.Close()
-					logging.Error("Redis AUTH error:" +  err.Error())
+					logging.Error("Redis AUTH error:" + err.Error())
 					return nil, err
 				}
 			}

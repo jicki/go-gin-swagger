@@ -2,9 +2,8 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
-
-	"gin-swagger-demo/models"
-	"gin-swagger-demo/pkg/e"
+	"go-gin-swagger/models"
+	"go-gin-swagger/pkg/e"
 )
 
 type Gin struct {

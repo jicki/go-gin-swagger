@@ -5,8 +5,8 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
-	"gin-swagger-demo/pkg/logging"
-	"gin-swagger-demo/pkg/setting"
+	"go-gin-swagger/pkg/logging"
+	"go-gin-swagger/pkg/setting"
 	"xorm.io/xorm"
 )
 
@@ -38,4 +38,3 @@ func Setup() {
 	}
 
 }
-

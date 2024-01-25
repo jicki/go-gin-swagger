@@ -1,6 +1,6 @@
 package models
 
-import "gin-swagger-demo/pkg/logging"
+import "go-gin-swagger/pkg/logging"
 
 type Admin struct {
 	Id            int    `xorm:"not null pk autoincr comment('主键ID') INT(11)"`          //主键ID

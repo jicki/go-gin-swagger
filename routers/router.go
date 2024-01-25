@@ -1,18 +1,17 @@
 package routers
+
 import (
-	"gin-swagger-demo/pkg/logging"
 	"github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"time"
-	_ "gin-swagger-demo/docs"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "go-gin-swagger/docs"
+	"go-gin-swagger/pkg/logging"
+	"net/http"
+	"time"
 )
 
-
 var r *gin.Engine
-
 
 func InitRouter() *gin.Engine {
 

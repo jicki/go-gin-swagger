@@ -5,9 +5,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"gin-swagger-demo/pkg/e"
-	"gin-swagger-demo/pkg/logging"
-	"gin-swagger-demo/pkg/util"
+	"go-gin-swagger/pkg/e"
+	"go-gin-swagger/pkg/logging"
+	"go-gin-swagger/pkg/util"
 )
 
 // JWT is jwt middleware
@@ -16,12 +16,12 @@ func JWT() gin.HandlerFunc {
 		var code = e.SUCCESS
 		var data interface{}
 
-		uid,isAdmin,err := util.GetUidFromHeader(c)
+		uid, isAdmin, err := util.GetUidFromHeader(c)
 		if err != nil {
 			code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
-			logging.Error("jwt check token error: ","msg", err.Error(),"uid",uid,"isAdmin",isAdmin)
+			logging.Error("jwt check token error: ", "msg", err.Error(), "uid", uid, "isAdmin", isAdmin)
 		} else {
-			if !isAdmin && c.Request.URL.Path[:7] == "/admin/"{
+			if !isAdmin && c.Request.URL.Path[:7] == "/admin/" {
 				logging.Error("jwt ILLEGAL request : ", uid)
 				code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
 			} else {

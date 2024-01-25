@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/tealeg/xlsx"
-	"gin-swagger-demo/pkg/constants"
+	"go-gin-swagger/pkg/constants"
 	"math/rand"
 	"strconv"
 	"strings"
@@ -13,7 +13,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/google/uuid"
-	"gin-swagger-demo/pkg/setting"
+	"go-gin-swagger/pkg/setting"
 )
 
 // Setup Initialize the util
@@ -27,7 +27,7 @@ func UUID() string {
 	return strings.Replace(id.String(), "-", "", -1)
 }
 
-//转换时间戳
+// 转换时间戳
 func StrToTime(toTime string) int {
 	if toTime == "" {
 		return 0
@@ -39,7 +39,7 @@ func StrToTime(toTime string) int {
 	return int(tt.Unix())
 }
 
-//时间戳转换时间
+// 时间戳转换时间
 func TimeToStrTime(toTime int) string {
 	if toTime < 1 {
 		return ""
@@ -49,7 +49,7 @@ func TimeToStrTime(toTime int) string {
 	return timeobj.In(cstSh).Format(constants.TimeLayout)
 }
 
-//时间戳转换时间 1608880464 -> 12.1 14:30
+// 时间戳转换时间 1608880464 -> 12.1 14:30
 func TimeToStrTimeShort(toTime int) string {
 	timeLayout := "01.02 15:04"
 	if toTime < 1 {
@@ -60,7 +60,7 @@ func TimeToStrTimeShort(toTime int) string {
 	return timeobj.In(cstSh).Format(timeLayout)
 }
 
-//时间戳转换时间 1608880464 -> 12月1日 周三
+// 时间戳转换时间 1608880464 -> 12月1日 周三
 func TimeToWeek(toTime int) string {
 	if toTime < 1 {
 		return ""
@@ -70,19 +70,19 @@ func TimeToWeek(toTime int) string {
 	date := timeobj.In(cstSh).Format("1月2日")
 
 	weekMap := map[string]string{
-		"Mon" : "周一",
-		"Tue" : "周二",
-		"Wed" : "周三",
-		"Thu" : "周四",
-		"Fri" : "周五",
-		"Sat" : "周六",
-		"Sun" : "周日",
+		"Mon": "周一",
+		"Tue": "周二",
+		"Wed": "周三",
+		"Thu": "周四",
+		"Fri": "周五",
+		"Sat": "周六",
+		"Sun": "周日",
 	}
 	week := timeobj.In(cstSh).Format("Mon")
 	return date + " " + weekMap[week]
 }
 
-//时间戳转换日期
+// 时间戳转换日期
 func TimeToStrDate(toTime int) string {
 	if toTime < 1 {
 		return ""
@@ -92,7 +92,7 @@ func TimeToStrDate(toTime int) string {
 	return timeobj.In(cstSh).Format(constants.DateLayout)
 }
 
-//时间戳转换
+// 时间戳转换
 func TimeToStrShow(toTime int) string {
 	ret := ""
 	if toTime < 1 {
@@ -120,7 +120,7 @@ func TimeToStrShow(toTime int) string {
 	return ret
 }
 
-//md5 加密
+// md5 加密
 func Md5String(str string) string {
 	if str == "" {
 		return ""
@@ -132,7 +132,7 @@ func Md5String(str string) string {
 	return md5str
 }
 
-//去重切片
+// 去重切片
 func RemoveDuplicateElement(languages []string) []string {
 	if len(languages) < 1 {
 		return nil
@@ -217,7 +217,6 @@ func FilterEmoji(content string) string {
 	return new_content
 }
 
-
 func ExcelExportData(header []string, data []map[string]interface{}, sheetName string, fileName string) string {
 	var file *xlsx.File
 	var sheet *xlsx.Sheet
@@ -237,7 +236,7 @@ func ExcelExportData(header []string, data []map[string]interface{}, sheetName s
 	}
 	for _, obj := range data {
 		row = sheet.AddRow()
-		for i := 0;i <len(header);i++{
+		for i := 0; i < len(header); i++ {
 			switch obj[header[i]].(type) {
 			case string:
 				obj[header[i]] = obj[header[i]]
@@ -253,26 +252,25 @@ func ExcelExportData(header []string, data []map[string]interface{}, sheetName s
 			cell.Value = obj[header[i]].(string)
 		}
 	}
-	url := fileName+".xlsx"
+	url := fileName + ".xlsx"
 	file.Save(url)
 	return url
 }
 
-
 // GetUidFromHeader 获取当前登录用户的 UID
-func GetUidFromHeader(c *gin.Context) (uid int,isAdmin bool,err error) {
+func GetUidFromHeader(c *gin.Context) (uid int, isAdmin bool, err error) {
 	const BEARER_SCHEMA_USER = "Bearer "
 	//const BEARER_SCHEMA_ADMIN = "Aearer "
 
 	authHeader := c.GetHeader("Authorization")
 
 	if len(authHeader) < len(BEARER_SCHEMA_USER) {
-		return 0,false,fmt.Errorf("Token is empty")
+		return 0, false, fmt.Errorf("Token is empty")
 	}
 
 	token := authHeader[len(BEARER_SCHEMA_USER):]
 	if token == "" {
-		return 0,false,nil
+		return 0, false, nil
 	}
 
 	tokenType := authHeader[0:1] //第一个字节用来标识是用户的 token 还是 admin 的
@@ -280,15 +278,15 @@ func GetUidFromHeader(c *gin.Context) (uid int,isAdmin bool,err error) {
 	if tokenType == "A" {
 		res, err := ParseAdminToken(token)
 		if err != nil {
-			return  0,false,err
+			return 0, false, err
 		}
-		return res.Id,true,nil
-	} else{
+		return res.Id, true, nil
+	} else {
 		res, err := ParseUserToken(token)
 		if err != nil {
-			return  0,false,err
+			return 0, false, err
 		}
-		return res.Id,false,nil
+		return res.Id, false, nil
 	}
 }
 
@@ -297,11 +295,11 @@ func DecToChar(num int64) string {
 	s26 := strconv.FormatInt(num, 26)
 
 	res := ""
-	for _,c := range  s26 {
+	for _, c := range s26 {
 		if c <= 57 {
-			res += string(c+17)
-		} else{
-			res += string(c-22)
+			res += string(c + 17)
+		} else {
+			res += string(c - 22)
 		}
 	}
 	return res
@@ -320,7 +318,7 @@ func ShowSubstr(s string, l int) string {
 			rl = 2
 		}
 
-		if sl + rl > l {
+		if sl+rl > l {
 			break
 		}
 		sl += rl

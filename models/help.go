@@ -1,7 +1,7 @@
 package models
 
 import (
-	"gin-swagger-demo/pkg/logging"
+	"go-gin-swagger/pkg/logging"
 )
 
 type Help struct {
@@ -15,7 +15,7 @@ type Help struct {
 func (item *Help) Add() (int64, error) {
 	res, err := db.Insert(item)
 	if err != nil {
-		logging.Error("DB: Help.Add: ", "msg",err.Error())
+		logging.Error("DB: Help.Add: ", "msg", err.Error())
 	}
 	return res, err
 }
@@ -23,7 +23,7 @@ func (item *Help) Add() (int64, error) {
 func (item *Help) Edit(closEdit string) (int64, error) {
 	res, err := db.ID(item.Id).Cols(closEdit).Update(item)
 	if err != nil {
-		logging.Error("DB: Help.Edit: ", "msg",err.Error())
+		logging.Error("DB: Help.Edit: ", "msg", err.Error())
 	}
 	return res, err
 }
@@ -31,7 +31,7 @@ func (item *Help) Edit(closEdit string) (int64, error) {
 func (item *Help) Delete() (int64, error) {
 	res, err := db.Delete(item)
 	if err != nil {
-		logging.Error("DB: Help.Delete: ","msg", err.Error())
+		logging.Error("DB: Help.Delete: ", "msg", err.Error())
 	}
 	return res, err
 }
@@ -39,7 +39,7 @@ func (item *Help) Delete() (int64, error) {
 func (item *Help) GetById() (bool, error) {
 	res, err := db.ID(item.Id).Get(item)
 	if err != nil {
-		logging.Error("DB: Help.GetById: ", "msg",err.Error())
+		logging.Error("DB: Help.GetById: ", "msg", err.Error())
 	}
 	return res, err
 }
@@ -47,7 +47,7 @@ func (item *Help) GetById() (bool, error) {
 func (item *Help) Get() (bool, error) {
 	res, err := db.Get(item)
 	if err != nil {
-		logging.Error("DB: Help.Get: ", "msg",err.Error())
+		logging.Error("DB: Help.Get: ", "msg", err.Error())
 	}
 	return res, err
 }
@@ -56,7 +56,7 @@ func GetHelpList(limit int, offset int) ([]*Help, error) {
 	ls := make([]*Help, 0)
 	err := db.Table("help").Where("").Limit(limit, offset).OrderBy("sort desc").Find(&ls)
 	if err != nil {
-		logging.Error("DB: GetHelpList: ", "msg",err.Error())
+		logging.Error("DB: GetHelpList: ", "msg", err.Error())
 	}
 	return ls, err
 }

@@ -2,7 +2,7 @@ package logging
 
 import (
 	"fmt"
-	"gin-swagger-demo/pkg/setting"
+	"go-gin-swagger/pkg/setting"
 )
 
 // getLogFilePath get the log file save path

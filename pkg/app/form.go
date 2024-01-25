@@ -3,10 +3,10 @@ package app
 import (
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
-	"gin-swagger-demo/pkg/logging"
+	"go-gin-swagger/pkg/logging"
 	"net/http"
 
-	"gin-swagger-demo/pkg/e"
+	"go-gin-swagger/pkg/e"
 )
 
 // BindAndValid binds and validates data
@@ -19,7 +19,7 @@ func BindAndValid(c *gin.Context, form interface{}) (int, int) {
 	valid := validation.Validation{}
 	check, err := valid.Valid(form)
 	if err != nil {
-		logging.Error("BindAndValid valid.Valid error", "msg",err.Error())
+		logging.Error("BindAndValid valid.Valid error", "msg", err.Error())
 		return http.StatusInternalServerError, e.ERROR
 	}
 	if !check {

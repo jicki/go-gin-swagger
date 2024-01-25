@@ -1,9 +1,9 @@
 package util
 
 import (
-	"gin-swagger-demo/pkg/constants"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
+	"go-gin-swagger/pkg/constants"
 	"math"
 )
 

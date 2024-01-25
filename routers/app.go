@@ -1,11 +1,13 @@
 package routers
 
 import (
-	v1 "gin-swagger-demo/app/v1"
-	"gin-swagger-demo/middleware/jwt"
+	v1 "go-gin-swagger/app/v1"
+	"go-gin-swagger/middleware/jwt"
 )
 
-/* InitAppRouter
+/*
+	InitAppRouter
+
 初始化 APP 接口的路径
 */
 func InitAppRouter() {

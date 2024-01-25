@@ -6,12 +6,12 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"gin-swagger-demo/pkg/gredis"
-	"gin-swagger-demo/pkg/logging"
-	"gin-swagger-demo/pkg/setting"
-	"gin-swagger-demo/pkg/util"
-	"gin-swagger-demo/routers"
-	"gin-swagger-demo/models"
+	"go-gin-swagger/models"
+	"go-gin-swagger/pkg/gredis"
+	"go-gin-swagger/pkg/logging"
+	"go-gin-swagger/pkg/setting"
+	"go-gin-swagger/pkg/util"
+	"go-gin-swagger/routers"
 )
 
 func init() {
@@ -21,14 +21,13 @@ func init() {
 	util.Setup()
 	models.Setup()
 }
-// @title gin-swagger-demo
+
+// @title go-gin-swagger
 // @version 1.0
-// @description gin-swagger-demo服务后端API接口文档
+// @description go-gin-swagger 服务后端API接口文档
 // @contact.name API Support
 // @contact.url http://www.swagger.io/support
-// @license.name wanggang
-// @license.url https://gitee.com/wanggang826/gin-swagger-demo
-// @host 127.0.0.1:8000
+// @host ackdev-otel-demo.srv.deeproute.cn
 // @BasePath
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)

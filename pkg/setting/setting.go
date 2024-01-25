@@ -16,18 +16,18 @@ type Wechat struct {
 	GzhhAppSecret string
 	GzhhToken     string
 
-	MerchantIndexSigned	int //用哪个商户号收报名费
-	MerchantIndexSMS	int //用哪个商户号收短信费
-	MerchantIndexTransfer	int //用哪个商户号提现
+	MerchantIndexSigned   int //用哪个商户号收报名费
+	MerchantIndexSMS      int //用哪个商户号收短信费
+	MerchantIndexTransfer int //用哪个商户号提现
 
-	MerchantIds    []string
-	PayKeys        []string
-	RootCas        []string
+	MerchantIds []string
+	PayKeys     []string
+	RootCas     []string
 
-	NotifyURL      string
-	SpbillCreateIP string
-	DrawLimitOnce int //每笔限额，单位分
-	DrawLimitDay int //每日限额，单位分
+	NotifyURL          string
+	SpbillCreateIP     string
+	DrawLimitOnce      int //每笔限额，单位分
+	DrawLimitDay       int //每日限额，单位分
 	DrawDefaultFeerate int //默认提现费率 ，千分之几
 
 	TemplateIdEventStart     string
@@ -38,10 +38,10 @@ type Wechat struct {
 var WechatSetting = &Wechat{}
 
 type App struct {
-	JwtUserSecret string
+	JwtUserSecret  string
 	JwtAdminSecret string
-	PageSize  int
-	PrefixUrl string
+	PageSize       int
+	PrefixUrl      string
 
 	RuntimeRootPath string
 
@@ -108,7 +108,7 @@ var cfg *ini.File
 // Setup initialize the configuration instance
 func Setup() {
 	var err error
-	cfg, err = ini.Load("conf/app.ini")
+	cfg, err = ini.Load("/app/conf/app.ini")
 
 	if err != nil {
 		log.Fatalf("setting.Setup, fail to parse 'conf/app.ini': %v", err)
