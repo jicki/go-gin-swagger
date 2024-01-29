@@ -9,7 +9,8 @@ WORKDIR ${SRC_PATH}
 
 COPY . .
 
-RUN apk update && apk upgrade
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+    && apk update && apk upgrade
 
 RUN set -ex \
 && apk add git tar \
@@ -26,7 +27,8 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV LANGUAGE en_US:en
 
-RUN apk update && apk upgrade
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+    && apk update && apk upgrade
 
 RUN set -ex \
 && apk add bash tzdata \

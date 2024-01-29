@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	_ "go-gin-swagger/docs"
+	docs "go-gin-swagger/docs"
 	"go-gin-swagger/pkg/logging"
 	"net/http"
 	"time"
@@ -43,7 +43,11 @@ func InitRouter() *gin.Engine {
 		})
 	})
 
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.GET("/swagger/*any", func(context *gin.Context) {
+		docs.SwaggerInfo.Host = context.Request.Host
+		ginSwagger.WrapHandler(swaggerFiles.Handler)(context)
+	})
+
 	InitAppRouter()
 	InitAdminRouter()
 

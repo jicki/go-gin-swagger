@@ -41,7 +41,7 @@ definitions:
       username:
         type: string
     type: object
-host: ackdev-otel-demo.srv.deeproute.cn
+host: localhost:8000
 info:
   contact:
     name: API Support

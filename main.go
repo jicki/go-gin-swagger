@@ -27,7 +27,7 @@ func init() {
 // @description go-gin-swagger 服务后端API接口文档
 // @contact.name API Support
 // @contact.url http://www.swagger.io/support
-// @host ackdev-otel-demo.srv.deeproute.cn
+// @host localhost:8000
 // @BasePath
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)

@@ -14,7 +14,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT = 2 DEFAULT  CHARSET=utf8mb4 COMMENT='管理员';
 
 INSERT INTO `admin` (`id`, `username`, `password`, `salt`, `is_activited`, `activated_time`, `admin_type`, `permissions`, `create_time`, `update_time`) VALUES
-    (1, 'admin', 'eb5e043ef52340c6966bba42c2792513', 'BpLnfgDsc2WD8F2q', 1, 1556101521, 0, NULL, 1533279764, 1625078889);
+    (1, 'admin', '287a71be8332fb921f5eb887ee9caad2', 'BpLnfgDsc2WD8F2q', 1, 1556101521, 0, NULL, 1533279764, 1625078889);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (

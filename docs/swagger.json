@@ -9,7 +9,7 @@
         },
         "version": "1.0"
     },
-    "host": "ackdev-otel-demo.srv.deeproute.cn",
+    "host": "localhost:8000",
     "paths": {
         "/admin/v1/auth/changePassword": {
             "post": {

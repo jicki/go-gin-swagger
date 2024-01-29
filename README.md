@@ -19,3 +19,9 @@ gin 结合 swagger 简单封装，方便开箱即用，API服务及接口文档
 1. go install github.com/swaggo/swag/cmd/swag@latest
 2. swag init  // 注意，一定要和 main.go 处于同一级目录
 3. 初始化命令，在根目录生成一个docs文件夹
+
+
+### admin user
+username: admin 
+
+password: admin
