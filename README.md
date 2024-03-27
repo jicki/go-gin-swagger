@@ -25,3 +25,8 @@ gin 结合 swagger 简单封装，方便开箱即用，API服务及接口文档
 username: admin 
 
 password: admin
+
+
+### Test swagger
+
+`http://127.0.0.1:8000/swagger/index.html`
